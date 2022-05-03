@@ -26,10 +26,27 @@ db.sequelize.sync();
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to studenthub application." });
 });
 
 require("./app/routes/turorial.routes")(app);
+
+
+//announcements
+app.use("/api/announcements", require("./app/routes/announcement"));
+//lessonplan
+app.use("/api/lessonplan", require("./app/routes/lessonplan"));
+app.use("/api/lessonplan/postLessonplanRow", require("./app/routes/lessonplan"));
+//appointment
+app.use("/api/appointment", require("./app/routes/appointment"));
+app.use("/api/appointment/postAppointment", require("./app/routes/appointment"));
+//courseDatabase
+app.use("/api/courseDatabase", require("./app/routes/course"));
+//student
+app.use("/api/student", require("./app/routes/student"));
+//grades
+app.use("/api/grade", require("./app/routes/grade"));
+
 
 // set port, listen for requests
 const PORT = process.env.NODE_DOCKER_PORT || 8080;
